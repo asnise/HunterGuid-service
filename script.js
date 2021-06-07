@@ -1,7 +1,10 @@
 
 var request = new XMLHttpRequest();
 var data = "";
-request.open('GET', 'https://raw.githubusercontent.com/asnise/Hunter_Guid/master/data.json?token=ANEBV6N2D4WQ5WJUXT6UIQDAXZVUY', true);
+
+var acces = atob("QU5FQlY2TjJENFdRNVdKVVhUNlVJUURBWFpWVVk=");
+
+request.open('GET', 'https://raw.githubusercontent.com/asnise/Hunter_Guid/master/data.json?token=' + acces, true);
 
 request.onload = function(){ 
     if (request.status >= 200 && request.status < 400) {
