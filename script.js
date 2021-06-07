@@ -1,7 +1,7 @@
 
 var request = new XMLHttpRequest();
 var data = "";
-request.open('GET', 'data.json', true);
+request.open('GET', 'https://raw.githubusercontent.com/asnise/Hunter_Guid/master/data.json?token=ANEBV6N2D4WQ5WJUXT6UIQDAXZVUY', true);
 
 request.onload = function(){ 
     if (request.status >= 200 && request.status < 400) {
