@@ -1,37 +1,104 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit&amp;display=swap" rel="stylesheet">
-    <link rel="icon" href="../logo.png" type="image/icon type">
-    <title>HOME</title>
-    <script src="script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<style>
-    html {
+  <head>
+    <link rel="icon" href="https://github.com/asnise/HunterGuid-service/blob/main/weapon/none.png?raw=true">
+    <meta charset="UTF-8">
+    <title>Hunter Cards</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        background-color: #212121;
+        color: #fff;
         font-family: 'Kanit', sans-serif;
-    }
-    .content
-    {
-        margin: 100px;
-    }
-</style>
+        font-size: 18px;
+      }
+      
+      body {
+        background-color: #2a2a2c;
+      }
+      
+      /* Style for the hunter card */
+      .card {
+        display: block;
+        flex-direction: row;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 15px;
+        background-color: #424242;
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+        position: relative; /* Set position to relative */
+        transition: 0.3s;
+      }
 
-<body>
-    <center>
-        <div class="content">
-    <p>ID DISCORD : Update 22/11/63</p>
-    <input id="myInput" type="text" value="your id" />
-    <button onclick="send_id()">Send</button>
-    <div id="myCanvas" class="info">
-        <p id="name">Name</p>
-        <p id="age">Age</p>
-        <p id="weapon">Weapon</p>
-        <p id="hr">Hunter Rank</p>
-        <p id="about">About</p>
-    </div>
-</div>
-</center>
-</body>
+      .card h2 {
+        color: rgb(57, 164, 231);
+        margin: 0;
+        font-size: 1.2rem;
+        text-align: left;
+      }
+      
+      .card p {
+        position: relative;
+        z-index: 50;
+        margin: 5px 0;
+        font-size: 0.9rem;
+        text-align: left;
 
+      }
+
+      .card img {
+        z-index: 1;
+        opacity: 0.5;
+        position: absolute; /* Set position to absolute */
+        right: 20px; /* Align to the right */
+        bottom: 20px; /* Align to the bottom */
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cards-container" style="display:flex;flex-wrap:wrap;"></div> <!-- Add flex-wrap property to container -->
+    
+    <script>
+      // Fetch the hunter data from the provided URL
+      fetch('https://script.google.com/macros/s/AKfycbylpHZMowhp5v7hS3dU81OmNbkxrrdDlGCdCOu7c1XPF0n1ItFsuFLT7txZS5eGHYU/exec?id=1620829057')
+        .then(response => response.json())
+        .then(hunters => {
+          // Create HTML elements for each hunter
+          const cardsContainer = document.getElementById('cards-container');
+          hunters.forEach(hunter => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            
+            const name = document.createElement('h2');
+            name.textContent = hunter.nickname;
+            card.appendChild(name);
+            
+            const about = document.createElement('p');
+            about.textContent = hunter.abouts;
+            card.appendChild(about);
+            
+            const rank = document.createElement('p');
+            rank.textContent = `Hunter Rank : ${hunter.hunterrank}`;
+            card.appendChild(rank);
+            
+            const weapon = document.createElement('p');
+            weapon.textContent = `Weapon : ${hunter.weapon}`;
+            card.appendChild(weapon);
+
+            const img = document.createElement('img');
+            img.setAttribute('src', `https://github.com/asnise/HunterGuid-service/blob/main/weapon/${hunter.weapon}.png?raw=true`);
+            card.appendChild(img);
+            
+            cardsContainer.appendChild(card);
+          });
+        });
+    </script>
+    <div id="download-container">
+      <center><p>	&#169; 2023 Website By Nattaset Panlek</p></center>
+      
+  </div>
+  </body>
 </html>
